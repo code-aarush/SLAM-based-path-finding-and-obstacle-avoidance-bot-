@@ -1,0 +1,1206 @@
+{
+  "metadata": {
+    "analyzer_version": "1.0.0",
+    "generated_at": "2026-09-04T09:36:24.453378+00:00",
+    "source_world_file": "/home/aarush-sivaraman/Robotics/workspaces/Worlds_models/tugbot_warehouse.sdf"
+  },
+  "world": {
+    "name": "world_demo",
+    "source_path": "/home/aarush-sivaraman/Robotics/workspaces/Worlds_models/tugbot_warehouse.sdf"
+  },
+  "summary": {
+    "total_included_instances": 26,
+    "total_direct_world_models": 1,
+    "total_model_entities": 27,
+    "unique_external_model_types": 7,
+    "resolved_models": 7,
+    "unresolved_models": 0
+  },
+  "external_models": [
+    {
+      "model_key": "Warehouse",
+      "uri": "https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Warehouse",
+      "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/openrobotics/models/warehouse/5/model.sdf",
+      "resolution": {
+        "status": "resolved",
+        "reason": null,
+        "model_dir": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/openrobotics/models/warehouse/5",
+        "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/openrobotics/models/warehouse/5/model.sdf"
+      },
+      "classification": {
+        "static_state": "STATIC",
+        "source": "model.sdf <static> element"
+      },
+      "instances": [
+        {
+          "name": "warehouse",
+          "pose": [
+            0.0,
+            0.0,
+            -0.09,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "static_override": null
+        }
+      ],
+      "collisions": [
+        {
+          "collision_name": "warehouse_collision",
+          "link_name": "warehouse_base",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "mesh",
+            "uri": "meshes/warehouse_colision.stl",
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "resolved_path": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/openrobotics/models/warehouse/5/meshes/warehouse_colision.stl",
+            "file_exists": true
+          }
+        }
+      ]
+    },
+    {
+      "model_key": "Tugbot-charging-station",
+      "uri": "https://fuel.ignitionrobotics.org/1.0/MovAi/models/Tugbot-charging-station",
+      "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/tugbot-charging-station/2/model.sdf",
+      "resolution": {
+        "status": "resolved",
+        "reason": null,
+        "model_dir": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/tugbot-charging-station/2",
+        "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/tugbot-charging-station/2/model.sdf"
+      },
+      "classification": {
+        "static_state": "STATIC",
+        "source": "model.sdf <static> element"
+      },
+      "instances": [
+        {
+          "name": "charging_station",
+          "pose": [
+            14.7,
+            -10.6,
+            -0.04,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "static_override": null
+        }
+      ],
+      "collisions": [
+        {
+          "collision_name": "charging_station_collision",
+          "link_name": "charging_station_base_link",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.05,
+            0.0,
+            0.0,
+            -1.570796327
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.3,
+            0.0,
+            0.0,
+            -1.570796327
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.1,
+              0.55,
+              0.4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "model_key": "Tugbot",
+      "uri": "https://fuel.ignitionrobotics.org/1.0/MovAi/models/Tugbot",
+      "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/tugbot/1/model.sdf",
+      "resolution": {
+        "status": "resolved",
+        "reason": null,
+        "model_dir": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/tugbot/1",
+        "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/tugbot/1/model.sdf"
+      },
+      "classification": {
+        "static_state": "DYNAMIC",
+        "source": "model.sdf <static> element"
+      },
+      "instances": [
+        {
+          "name": "tugbot",
+          "pose": [
+            13.9,
+            -10.6,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "static_override": null
+        }
+      ],
+      "collisions": [
+        {
+          "collision_name": "base_link_collision",
+          "link_name": "base_link",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "mesh",
+            "uri": "meshes/base/tugbot_simp.stl",
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "resolved_path": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/tugbot/1/meshes/base/tugbot_simp.stl",
+            "file_exists": true
+          }
+        },
+        {
+          "collision_name": "gripper_collision",
+          "link_name": "gripper",
+          "link_pose": [
+            -0.35,
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            -0.005,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.15,
+              0.1,
+              0.1
+            ]
+          }
+        },
+        {
+          "collision_name": "gripper_hand_collision",
+          "link_name": "gripper_hand",
+          "link_pose": [
+            -0.463,
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.015,
+            0.0,
+            0.006,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.04,
+              0.1,
+              0.017
+            ]
+          }
+        },
+        {
+          "collision_name": "gripper_hand_sideL_collision",
+          "link_name": "gripper_hand",
+          "link_pose": [
+            -0.463,
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.08,
+            0.03,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.01,
+              0.05,
+              0.07
+            ]
+          }
+        },
+        {
+          "collision_name": "gripper_hand_sideL_slide_collision",
+          "link_name": "gripper_hand",
+          "link_pose": [
+            -0.463,
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.055,
+            0.03,
+            0.9,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.01,
+              0.055,
+              0.04
+            ]
+          }
+        },
+        {
+          "collision_name": "gripper_hand_sideR_collision",
+          "link_name": "gripper_hand",
+          "link_pose": [
+            -0.463,
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            -0.08,
+            0.03,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.01,
+              0.05,
+              0.07
+            ]
+          }
+        },
+        {
+          "collision_name": "gripper_hand_sideR_slide_collision",
+          "link_name": "gripper_hand",
+          "link_pose": [
+            -0.463,
+            0.0,
+            0.1,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            -0.055,
+            0.03,
+            -0.9,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.01,
+              0.055,
+              0.04
+            ]
+          }
+        },
+        {
+          "collision_name": "wheel_front_collision",
+          "link_name": "wheel_front",
+          "link_pose": [
+            0.145,
+            0.0,
+            0.0345,
+            1.570796327,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.025
+          }
+        },
+        {
+          "collision_name": "wheel_back_collision",
+          "link_name": "wheel_back",
+          "link_pose": [
+            -0.225,
+            0.0,
+            0.035,
+            1.570796327,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.035
+          }
+        },
+        {
+          "collision_name": "wheel_left_collision",
+          "link_name": "wheel_left",
+          "link_pose": [
+            0.0,
+            0.257,
+            0.195,
+            -1.570796327,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "cylinder",
+            "radius": 0.195,
+            "length": 0.05
+          }
+        },
+        {
+          "collision_name": "wheel_right_collision",
+          "link_name": "wheel_right",
+          "link_pose": [
+            0.0,
+            -0.257,
+            0.195,
+            1.570796327,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "cylinder",
+            "radius": 0.195,
+            "length": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "model_key": "cart_model_2",
+      "uri": "https://fuel.ignitionrobotics.org/1.0/MovAi/models/cart_model_2",
+      "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/cart_model_2/2/model.sdf",
+      "resolution": {
+        "status": "resolved",
+        "reason": null,
+        "model_dir": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/cart_model_2/2",
+        "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/cart_model_2/2/model.sdf"
+      },
+      "classification": {
+        "static_state": "UNKNOWN",
+        "source": "no <static> element found in includes or model.sdf"
+      },
+      "instances": [
+        {
+          "name": "cart1",
+          "pose": [
+            -5.73,
+            15.0,
+            0.25,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        }
+      ],
+      "collisions": [
+        {
+          "collision_name": "base_link_collision",
+          "link_name": "base_link",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.57079632679
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "mesh",
+            "uri": "meshes/cart_base_collision.stl",
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "resolved_path": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/cart_model_2/2/meshes/cart_base_collision.stl",
+            "file_exists": true
+          }
+        },
+        {
+          "collision_name": "back_left_collision",
+          "link_name": "back_left",
+          "link_pose": [
+            -1.04,
+            -0.245,
+            -0.05,
+            0.0,
+            0.0,
+            1.570796327
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.570796327,
+            0.0
+          ],
+          "geometry": {
+            "type": "cylinder",
+            "radius": 0.06,
+            "length": 0.03
+          }
+        },
+        {
+          "collision_name": "back_right_collision",
+          "link_name": "back_right",
+          "link_pose": [
+            -1.04,
+            0.245,
+            -0.05,
+            0.0,
+            0.0,
+            1.570796327
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.570796327,
+            0.0
+          ],
+          "geometry": {
+            "type": "cylinder",
+            "radius": 0.06,
+            "length": 0.03
+          }
+        },
+        {
+          "collision_name": "front_left_collision",
+          "link_name": "front_left",
+          "link_pose": [
+            -0.04,
+            -0.245,
+            -0.05,
+            0.0,
+            0.0,
+            1.570796327
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.570796327,
+            0.0
+          ],
+          "geometry": {
+            "type": "cylinder",
+            "radius": 0.06,
+            "length": 0.03
+          }
+        },
+        {
+          "collision_name": "front_right_collision",
+          "link_name": "front_right",
+          "link_pose": [
+            -0.04,
+            0.245,
+            -0.05,
+            0.0,
+            0.0,
+            1.570796327
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.570796327,
+            0.0
+          ],
+          "geometry": {
+            "type": "cylinder",
+            "radius": 0.06,
+            "length": 0.03
+          }
+        }
+      ]
+    },
+    {
+      "model_key": "shelf_big",
+      "uri": "https://fuel.ignitionrobotics.org/1.0/MovAi/models/shelf_big",
+      "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/shelf_big/2/model.sdf",
+      "resolution": {
+        "status": "resolved",
+        "reason": null,
+        "model_dir": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/shelf_big/2",
+        "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/shelf_big/2/model.sdf"
+      },
+      "classification": {
+        "static_state": "STATIC",
+        "source": "model.sdf <static> element"
+      },
+      "instances": [
+        {
+          "name": "shelf_big_0",
+          "pose": [
+            -9.34177,
+            -13.5598,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_big_1",
+          "pose": [
+            13.9821,
+            15.319,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_big_2",
+          "pose": [
+            6.19777,
+            -12.9647,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_big_3",
+          "pose": [
+            0.594376,
+            -12.9647,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_big_4",
+          "pose": [
+            -5.36284,
+            -12.9647,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        }
+      ],
+      "collisions": [
+        {
+          "collision_name": "shelf_big_chassi_collision",
+          "link_name": "shelf_big_base",
+          "link_pose": [
+            -0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              2.1,
+              18.0,
+              6.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "model_key": "shelf",
+      "uri": "https://fuel.ignitionrobotics.org/1.0/MovAi/models/shelf",
+      "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/shelf/1/model.sdf",
+      "resolution": {
+        "status": "resolved",
+        "reason": null,
+        "model_dir": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/shelf/1",
+        "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/shelf/1/model.sdf"
+      },
+      "classification": {
+        "static_state": "STATIC",
+        "source": "model.sdf <static> element"
+      },
+      "instances": [
+        {
+          "name": "shelf",
+          "pose": [
+            -4.41528,
+            -0.690987,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_0",
+          "pose": [
+            -4.41528,
+            2.30697,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_1",
+          "pose": [
+            -4.41528,
+            5.30708,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_2",
+          "pose": [
+            -4.41528,
+            8.34352,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_3",
+          "pose": [
+            5.60144,
+            8.34352,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_4",
+          "pose": [
+            5.60144,
+            5.30708,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_5",
+          "pose": [
+            5.60144,
+            -0.690987,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_6",
+          "pose": [
+            5.60144,
+            2.30697,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_7",
+          "pose": [
+            13.3818,
+            -21.2416,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_8",
+          "pose": [
+            13.3818,
+            -19.0028,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_9",
+          "pose": [
+            13.3818,
+            -16.4478,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "shelf_10",
+          "pose": [
+            13.3818,
+            -14.1028,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        }
+      ],
+      "collisions": [
+        {
+          "collision_name": "shelf_chassi_collision",
+          "link_name": "shelf_base",
+          "link_pose": [
+            -0.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.9,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              3.6,
+              0.6,
+              1.8
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "model_key": "pallet_box_mobile",
+      "uri": "https://fuel.ignitionrobotics.org/1.0/MovAi/models/pallet_box_mobile",
+      "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/pallet_box_mobile/3/model.sdf",
+      "resolution": {
+        "status": "resolved",
+        "reason": null,
+        "model_dir": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/pallet_box_mobile/3",
+        "model_sdf": "/home/aarush-sivaraman/.gz/fuel/fuel.ignitionrobotics.org/movai/models/pallet_box_mobile/3/model.sdf"
+      },
+      "classification": {
+        "static_state": "STATIC",
+        "source": "include static override (all 2 overriding instances agree)"
+      },
+      "instances": [
+        {
+          "name": "pallet_box_mobile",
+          "pose": [
+            4.4161,
+            14.6952,
+            0.01,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "pallet_box_mobile_0",
+          "pose": [
+            4.45415,
+            13.6212,
+            0.01,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "pallet_box_mobile_1",
+          "pose": [
+            4.4468,
+            12.229,
+            0.01,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": null
+        },
+        {
+          "name": "pallet_box",
+          "pose": [
+            -6.11913,
+            13.7079,
+            0.01,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": true
+        },
+        {
+          "name": "pallet_box_0",
+          "pose": [
+            14.0222,
+            -24.335,
+            0.01,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "static_override": true
+        }
+      ],
+      "collisions": [
+        {
+          "collision_name": "pallet_top_collision",
+          "link_name": "pallet_base",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.125,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.22,
+              0.8,
+              0.04
+            ]
+          }
+        },
+        {
+          "collision_name": "pallet_center_collision",
+          "link_name": "pallet_base",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.055,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.22,
+              0.1,
+              0.1
+            ]
+          }
+        },
+        {
+          "collision_name": "pallet_left_collision",
+          "link_name": "pallet_base",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            -0.35,
+            0.055,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.22,
+              0.1,
+              0.1
+            ]
+          }
+        },
+        {
+          "collision_name": "pallet_right_collision",
+          "link_name": "pallet_base",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.35,
+            0.055,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.22,
+              0.1,
+              0.1
+            ]
+          }
+        },
+        {
+          "collision_name": "boxes_collision",
+          "link_name": "pallet_base",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.644,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.22,
+              0.8,
+              1.0
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "direct_world_models": [
+    {
+      "name": "ground_plane",
+      "pose": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "static_classification": {
+        "static_state": "STATIC",
+        "source": "world <model> <static> element"
+      },
+      "nav_relevance": {
+        "label": "TRAVERSABLE",
+        "reason": "all collisions are plane geometry (likely floor/ground surface)"
+      },
+      "collisions": [
+        {
+          "collision_name": "collision",
+          "link_name": "link",
+          "link_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "collision_pose": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry": {
+            "type": "plane",
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "size": [
+              1.0,
+              1.0
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}
