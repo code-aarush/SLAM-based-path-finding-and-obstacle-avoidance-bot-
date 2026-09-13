@@ -1,0 +1,76 @@
+# ros_gz_bridge configuration for Tugbot in Gazebo Harmonic
+#
+# RUNTIME-VERIFIED topic names (from: gz topic -l while simulation running)
+#
+# Actual Gazebo sensor topic convention (Harmonic with world-scoped paths):
+#   /world/<world_name>/model/<model>/link/<link>/sensor/<sensor>/scan
+#
+# World name: "world_demo" (from tugbot_warehouse.sdf <world name='world_demo'>)
+# Model name: "tugbot"
+#
+# Sensors:
+#   scan_front:
+#     Full gz topic: /world/world_demo/model/tugbot/link/scan_front/sensor/scan_front/scan
+#     gz msg type:   gz.msgs.LaserScan
+#     Gazebo frame_id in message: "tugbot::scan_front::scan_front" (scoped name)
+#     → We override frame_id to "scan_front" (plain) so TF lookups work in ROS.
+#
+#   scan_back:
+#     Full gz topic: /world/world_demo/model/tugbot/link/scan_back/sensor/scan_back/scan
+#     gz msg type:   gz.msgs.LaserScan
+#
+# Odometry:
+#   DiffDrive plugin publishes:
+#     /model/tugbot/odometry  → gz.msgs.Odometry
+#     /model/tugbot/tf        → gz.msgs.Pose_V
+#   Runtime-verified frame_id=odom, child_frame_id=base_link
+#
+# Clock:
+#   /clock → rosgraph_msgs/msg/Clock
+#
+# Cmd vel:
+#   /model/tugbot/cmd_vel (bidirectional, for teleop)
+
+# ── Scan Front (primary SLAM sensor) ────────────────────────────────────────
+- ros_topic_name: "/scan"
+  gz_topic_name: "/world/world_demo/model/tugbot/link/scan_front/sensor/scan_front/scan"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  direction: GZ_TO_ROS
+  frame_id: "scan_front"
+
+# ── Scan Back (bridged but not used for SLAM) ────────────────────────────────
+- ros_topic_name: "/scan_back"
+  gz_topic_name: "/world/world_demo/model/tugbot/link/scan_back/sensor/scan_back/scan"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  direction: GZ_TO_ROS
+  frame_id: "scan_back"
+
+# ── Odometry (DiffDrive plugin, frames: odom → base_link) ───────────────────
+- ros_topic_name: "/odom"
+  gz_topic_name: "/model/tugbot/odometry"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  direction: GZ_TO_ROS
+
+# ── TF (odom → base_link from DiffDrive; published by Gazebo PosePublisher) ─
+- ros_topic_name: "/tf"
+  gz_topic_name: "/model/tugbot/tf"
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "gz.msgs.Pose_V"
+  direction: GZ_TO_ROS
+
+# ── Clock (Gazebo sim time → ROS /clock) ────────────────────────────────────
+- ros_topic_name: "/clock"
+  gz_topic_name: "/clock"
+  ros_type_name: "rosgraph_msgs/msg/Clock"
+  gz_type_name: "gz.msgs.Clock"
+  direction: GZ_TO_ROS
+
+# ── Cmd Vel (ROS → Gazebo for teleop) ───────────────────────────────────────
+- ros_topic_name: "/cmd_vel"
+  gz_topic_name: "/model/tugbot/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  direction: ROS_TO_GZ
