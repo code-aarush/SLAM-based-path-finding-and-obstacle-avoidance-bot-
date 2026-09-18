@@ -59,3 +59,13 @@ venv.bak/
 *.swp
 *.swo
 *~
+
+# ROS 2 / colcon build artifacts
+install/
+log/
+
+# Generated map outputs (from map_saver_cli / slam_toolbox serialize)
+# Note: data/outputs/world_analysis.json is intentionally versioned as a
+# project reference artifact produced by the world_analyzer utility.
+outputs/
+*.pgm

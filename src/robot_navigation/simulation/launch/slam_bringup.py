@@ -25,6 +25,7 @@ Usage:
 """
 
 import os
+from ament_index_python.packages import get_package_share_directory
 from pathlib import Path
 
 from launch import LaunchDescription
@@ -78,6 +79,11 @@ def generate_launch_description():
         default_value="true",
         description="Launch RViz2 for visualization",
     )
+    launch_navigation_arg = DeclareLaunchArgument(
+        "launch_navigation",
+        default_value="false",
+        description="Launch Nav2 navigation stack alongside SLAM",
+    )
     use_sim_time_arg = DeclareLaunchArgument(
         "use_sim_time",
         default_value="true",
@@ -85,6 +91,9 @@ def generate_launch_description():
     )
 
     use_sim_time = LaunchConfiguration("use_sim_time")
+
+    # ── Nav2 launch file path ──────────────────────────────────────────────
+    nav_launch_file = robot_nav_pkg / "navigation" / "launch" / "navigation_launch.py"
 
     # ── 1. Gazebo ──────────────────────────────────────────────────────────
     gz_sim = ExecuteProcess(
@@ -114,20 +123,53 @@ def generate_launch_description():
     )
     bridge_delayed = TimerAction(period=3.0, actions=[bridge_node])
 
-    # ── 3. slam_toolbox (delayed 6 s to let bridge establish topics) ──────
-    slam_node = Node(
-        package="slam_toolbox",
-        executable="async_slam_toolbox_node",
-        name="slam_toolbox",
-        output="screen",
-        parameters=[
-            str(slam_config),
-            {"use_sim_time": use_sim_time},
+    # ── 3. slam_toolbox + static TF (delayed 6 s to let bridge establish topics) ──
+    slam_node = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(get_package_share_directory("slam_toolbox"), "launch", "online_async_launch.py")
+        ),
+        launch_arguments={
+            "slam_params_file": str(slam_config),
+            "use_sim_time": LaunchConfiguration("use_sim_time")
+        }.items()
+    )
+    # Static TF: base_link → scan_front
+    # Required because:
+    #   - The DiffDrive plugin only publishes odom→base_link
+    #   - The bridge frame_id override sets LaserScan frame_id=scan_front
+    #   - slam_toolbox and Nav2 costmaps need scan_front in the TF tree
+    # Source: model.sdf fixed joint <link name="scan_front"><pose>0.221 0 0.1404 0 0 0</pose>
+    static_tf_scan_front = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="static_tf_base_link_scan_front",
+        arguments=[
+            "--x", "0.221",
+            "--y", "0.0",
+            "--z", "0.1404",
+            "--roll", "0.0",
+            "--pitch", "0.0",
+            "--yaw", "0.0",
+            "--frame-id", "base_link",
+            "--child-frame-id", "scan_front",
+        ],
+        parameters=[{"use_sim_time": use_sim_time}],
+    )
+    slam_delayed = TimerAction(period=6.0, actions=[slam_node, static_tf_scan_front])
+
+    # ── 4. Nav2 Navigation Stack (delayed 15 s to let SLAM establish map) ─
+    nav2_action = GroupAction(
+        condition=IfCondition(LaunchConfiguration("launch_navigation")),
+        actions=[
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(str(nav_launch_file)),
+                launch_arguments={"use_sim_time": use_sim_time}.items(),
+            )
         ],
     )
-    slam_delayed = TimerAction(period=6.0, actions=[slam_node])
+    nav2_delayed = TimerAction(period=15.0, actions=[nav2_action])
 
-    # ── 4. RViz2 (delayed 7 s) ────────────────────────────────────────────
+    # ── 5. RViz2 (delayed 7 s) ────────────────────────────────────────────
     rviz_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -143,10 +185,12 @@ def generate_launch_description():
         [
             world_arg,
             launch_rviz_arg,
+            launch_navigation_arg,
             use_sim_time_arg,
             gz_sim,
             bridge_delayed,
             slam_delayed,
+            nav2_delayed,
             rviz_delayed,
         ]
     )

@@ -107,7 +107,8 @@ map
 ### Option A — Shell script (no colcon build required)
 
 ```bash
-cd /home/aarush-sivaraman/Robotics/workspaces/robot_navigation
+# Replace <WORKSPACE> with the absolute path to this repository on your machine
+cd <WORKSPACE>/robot_navigation
 source /opt/ros/jazzy/setup.bash
 
 # With tmux (recommended):
@@ -328,14 +329,13 @@ slam/README.md                  ← this file
 | Module | Status | Reason |
 |--------|--------|--------|
 | `world_analyzer/` | ✅ Retained | Still functional; not in SLAM hot path |
-| `geometry_processor/` | ✅ Retained | Stub; no SLAM dependency |
-| `outputs/world_analysis.json` | ✅ Retained | Static analysis artifact |
+| `data/outputs/world_analysis.json` | ✅ Retained | Versioned project reference artifact |
 | `world_analyzer tests` | ✅ Retained | Still pass; not blocking |
 
-**Modules that are NOW OBSOLETE** (once SLAM is verified):
-- `world_analyzer` — SDF geometry was used as a map source; SLAM replaces this entirely
-- `geometry_processor` — was planned as downstream of world_analyzer
-- `occupancy_grid` (the Python stub) — replaced by slam_toolbox's native OccupancyGrid
-- `planners` (the Python stub) — was planned over the geometry-derived grid, not sensor SLAM
+**Modules deleted during repository baseline cleanup (September 2026):**
+- `geometry_processor/` — was a stub with no implementation; planned as downstream of world_analyzer
+- `occupancy_grid/` — was a stub; replaced by slam_toolbox's native OccupancyGrid
+- `planners/` — was a stub; was planned over the geometry-derived grid, not sensor SLAM
 
-None are deleted yet. Report deletion in the next milestone after SLAM is verified working.
+**Future deletion candidate** (once world_analyzer is no longer useful as a static analysis tool):
+- `world_analyzer/` — SDF geometry was used as a map source; SLAM replaces this in the runtime path
