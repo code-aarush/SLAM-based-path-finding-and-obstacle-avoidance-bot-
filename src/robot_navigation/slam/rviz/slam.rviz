@@ -277,3 +277,23 @@ Window Geometry:
   Width: 1400
   X: 45
   Y: 45
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Frontiers
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /exploration/frontiers
+    - Class: rviz_default_plugins/Pose
+      Enabled: true
+      Name: Target
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /exploration/selected_target
+      Color: 0; 255; 0
+      Shape: Arrow
