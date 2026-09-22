@@ -56,36 +56,11 @@ def generate_launch_description():
         parameters=[params_file, {'use_sim_time': use_sim_time}]
     )
 
-    local_costmap_node = Node(
-        package='nav2_costmap_2d',
-        executable='nav2_costmap_2d',
-        name='local_costmap',
-        namespace='local_costmap',
-        output='screen',
-        parameters=[params_file, {'use_sim_time': use_sim_time}]
-    )
-
-    global_costmap_node = Node(
-        package='nav2_costmap_2d',
-        executable='nav2_costmap_2d',
-        name='global_costmap',
-        namespace='global_costmap',
-        output='screen',
-        parameters=[params_file, {'use_sim_time': use_sim_time}]
-    )
-
-    lifecycle_manager_costmaps_node = Node(
-        package='nav2_lifecycle_manager',
-        executable='lifecycle_manager',
-        name='lifecycle_manager_costmaps',
-        output='screen',
-        parameters=[{
-            'use_sim_time': use_sim_time,
-            'autostart': True,
-            'node_names': ['local_costmap/local_costmap', 'global_costmap/global_costmap'],
-            'bond_timeout': 4.0
-        }]
-    )
+    # NOTE: In Nav2 Jazzy, controller_server and planner_server internally instantiate
+    # local_costmap and global_costmap respectively. Launching standalone nav2_costmap_2d
+    # nodes with the same namespace/name creates duplicate node names and lifecycle state
+    # conflicts. The costmaps are activated as part of their owner server's lifecycle.
+    # A single lifecycle_manager_navigation managing the four core servers is sufficient.
 
     lifecycle_manager_navigation_node = Node(
         package='nav2_lifecycle_manager',
@@ -100,13 +75,10 @@ def generate_launch_description():
         }]
     )
 
-    # Delay lifecycle managers slightly so costmaps and servers start up first
+    # Delay lifecycle manager slightly so all Nav2 servers have started first
     delayed_lifecycle = TimerAction(
         period=2.0,
-        actions=[
-            lifecycle_manager_costmaps_node,
-            lifecycle_manager_navigation_node
-        ]
+        actions=[lifecycle_manager_navigation_node]
     )
 
     ld = LaunchDescription()
@@ -117,8 +89,6 @@ def generate_launch_description():
     ld.add_action(planner_server_node)
     ld.add_action(behavior_server_node)
     ld.add_action(bt_navigator_node)
-    ld.add_action(local_costmap_node)
-    ld.add_action(global_costmap_node)
     ld.add_action(delayed_lifecycle)
 
     return ld
